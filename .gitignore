@@ -13,3 +13,13 @@
 *.userprefs
 .DS_Store
 Thumbs.db
+
+# Unity Samples
+Assets/Samples/
+
+# Unity Collaborate
+.collabignore
+
+# Unity Samples
+Assets/Samples/
+Assets/Samples.meta
