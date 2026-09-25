@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LayerCheck : MonoBehaviour
 {
@@ -11,14 +10,13 @@ public class LayerCheck : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        Debug.Log($"LayerCheck Awake: collider = {_collider}, layer = {_groundLayer.value}");
     }
 
     private void FixedUpdate()
     {
-        IsTouchingLayer = _collider.IsTouchingLayers(_groundLayer);
+        if (_collider == null)
+            return;
 
-        if (IsTouchingLayer)
-            Debug.Log("LayerCheck: TOUCHING ground!");
+        IsTouchingLayer = _collider.IsTouchingLayers(_groundLayer);
     }
 }

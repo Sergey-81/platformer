@@ -24,18 +24,4 @@ public class HeroInputReader : MonoBehaviour
             _hero.StopJump();
         }
     }
-
-    public void OnCrouch(InputAction.CallbackContext context)
-    {
-        if (context.started)
-            _hero.StartCrouch();
-        else if (context.canceled)
-            _hero.StopCrouch();
-    }
-
-    public void OnSaySomething(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-            _hero.SaySomething();
-    }
 }
