@@ -44,6 +44,9 @@ public class Hero : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
+
+        // --- ДЕЛАЕМ ГЕРОЯ БЕССМЕРТНЫМ ПРИ ПЕРЕХОДЕ ---
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetDirection(Vector2 direction)
@@ -124,10 +127,8 @@ public class Hero : MonoBehaviour
                 Vector3 spawnPos = transform.position + _runParticleOffset;
                 spawnPos.x += spawnDirection * 0.3f;
 
-                // Создаем партикл и сохраняем ссылку на него
                 GameObject particle = Instantiate(_runParticlePrefab, spawnPos, Quaternion.identity);
 
-                // Если бежим влево, переворачиваем (отражаем) префаб пыли по X
                 if (_direction.x < 0)
                 {
                     particle.transform.localScale = new Vector3(-1, 1, 1);
