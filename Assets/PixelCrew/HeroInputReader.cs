@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using PixelCrew.Components;
 
 public class HeroInputReader : MonoBehaviour
 {
@@ -30,6 +31,28 @@ public class HeroInputReader : MonoBehaviour
         if (context.canceled)
         {
             _hero.Interact();
+        }
+    }
+
+    // --- Обработка атаки ---
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            var attackComponent = _hero.GetComponent<HeroAttackComponent>();
+            if (attackComponent != null)
+            {
+                attackComponent.Attack();
+            }
+        }
+    }
+
+    // --- Обработка броска меча ---
+    public void OnThrow(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _hero.ThrowSword();
         }
     }
 }
