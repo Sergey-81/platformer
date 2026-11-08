@@ -126,6 +126,18 @@ public class Hero : MonoBehaviour
         }
     }
 
+    public void UsePotion()
+    {
+        var inventory = GetComponent<Inventory>();
+        var health = GetComponent<HealthComponent>();
+
+        // Проверяем, есть ли зелье и не полное ли здоровье
+        if (inventory != null && health != null && !health.IsFull && inventory.TrySpendPotion())
+        {
+            health.ApplyHeal(1); // Лечим на 1 единицу
+        }
+    }
+
     private bool IsGrounded()
     {
         if (_groundCheck == null)
@@ -210,6 +222,14 @@ public class Hero : MonoBehaviour
                 if (swordPickup != null)
                 {
                     swordPickup.Pickup(gameObject);
+                }
+                else
+                {
+                    var potionPickup = _interactionResult[i].GetComponent<HealthPotionPickup>();
+                    if (potionPickup != null)
+                    {
+                        potionPickup.Pickup(gameObject);
+                    }
                 }
             }
         }

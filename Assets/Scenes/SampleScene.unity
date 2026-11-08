@@ -1074,6 +1074,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5f573fe4-5157-4970-8ed0-402b57321860
     m_ActionName: Hero/Throw[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 202799443}
+        m_MethodName: OnUsePotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 288af6b9-c418-4e3a-be4a-22d88b97e3a9
+    m_ActionName: Hero/UsePotion[/Keyboard/h]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Hero
@@ -1246,6 +1261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d4efd51ee31ad47958a189722fcabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _swordsCount: 2
+  _potionsCount: 0
 --- !u!114 &202799453
 MonoBehaviour:
   m_ObjectHideFlags: 0

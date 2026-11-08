@@ -55,4 +55,12 @@ public class HeroInputReader : MonoBehaviour
             _hero.ThrowSword();
         }
     }
+
+    public void OnUsePotion(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _hero.UsePotion();
+        }
+    }
 }

@@ -7,9 +7,11 @@ namespace PixelCrew.Components
     {
         private List<string> _items = new List<string>();
 
-        [SerializeField] private int _swordsCount = 2; // Начальное количество мечей
+        [SerializeField] private int _swordsCount = 2;
+        [SerializeField] private int _potionsCount = 0;
 
         public int SwordsCount => _swordsCount;
+        public int PotionsCount => _potionsCount;
 
         public void AddItem(string itemId)
         {
@@ -36,6 +38,24 @@ namespace PixelCrew.Components
                 return true;
             }
             Debug.Log("Мечей нет!");
+            return false;
+        }
+
+        public void AddPotion()
+        {
+            _potionsCount++;
+            Debug.Log($"Зелье подобрано! Теперь зелий: {_potionsCount}");
+        }
+
+        public bool TrySpendPotion()
+        {
+            if (_potionsCount > 0)
+            {
+                _potionsCount--;
+                Debug.Log($"Зелье использовано! Осталось: {_potionsCount}");
+                return true;
+            }
+            Debug.Log("Зелий нет!");
             return false;
         }
 
