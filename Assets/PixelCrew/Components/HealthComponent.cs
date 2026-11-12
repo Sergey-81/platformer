@@ -38,6 +38,8 @@ namespace PixelCrew.Components
             if (_health <= 0)
             {
                 _onDie?.Invoke();
+                // Уничтожаем объект при смерти
+                Destroy(gameObject);
             }
         }
 

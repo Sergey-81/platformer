@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 namespace PixelCrew.Components
 {
@@ -6,6 +7,7 @@ namespace PixelCrew.Components
     {
         [SerializeField] private LayerCheck _groundCheck;
         [SerializeField] private GameObject _attackEffectPrefab;
+        [SerializeField] private float _attackRadius = 1.5f;
 
         private Animator _animator;
         private Hero _hero;
@@ -46,6 +48,34 @@ namespace PixelCrew.Components
                     }
                 }
             }
+
+            DealDamage();
+        }
+
+        private void DealDamage()
+        {
+            // Ищем ВСЕ коллайдеры в радиусе
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _attackRadius);
+
+            foreach (var hit in hits)
+            {
+                // Пропускаем самого героя
+                if (hit.gameObject == gameObject) continue;
+
+                // Если у объекта есть здоровье, наносим урон
+                var health = hit.GetComponent<HealthComponent>();
+                if (health != null)
+                {
+                    health.ApplyDamage(1);
+                    Debug.Log($"Герой ударил {hit.name}!");
+                }
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _attackRadius);
         }
     }
 }
