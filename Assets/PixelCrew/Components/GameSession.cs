@@ -12,6 +12,9 @@ namespace PixelCrew.Components
         public int Health => _health;
         public int Coins => _coins;
 
+        // Добавляем переменную для хранения позиции чекпоинта
+        public Vector2 CheckpointPosition { get; private set; }
+
         private void Awake()
         {
             if (Instance != null)
@@ -26,5 +29,11 @@ namespace PixelCrew.Components
 
         public void SetHealth(int value) => _health = value;
         public void SetCoins(int value) => _coins = value;
+
+        // Добавляем метод для сохранения позиции чекпоинта
+        public void SetCheckpoint(Vector2 position)
+        {
+            CheckpointPosition = position;
+        }
     }
 }
