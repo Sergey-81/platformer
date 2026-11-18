@@ -11,6 +11,7 @@ namespace PixelCrew.Components
 
         private Animator _animator;
         private Hero _hero;
+        private HeroStats _stats; // Добавили ссылку на прокачку
         private int _groundAttackIndex = 0;
         private int _airAttackIndex = 0;
 
@@ -18,6 +19,7 @@ namespace PixelCrew.Components
         {
             _animator = GetComponent<Animator>();
             _hero = GetComponent<Hero>();
+            _stats = GetComponent<HeroStats>(); // Ищем компонент прокачки
         }
 
         public void Attack()
@@ -57,6 +59,9 @@ namespace PixelCrew.Components
             // Ищем ВСЕ коллайдеры в радиусе
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _attackRadius);
 
+            // Получаем текущий урон из прокачки
+            int damage = (_stats != null) ? _stats.CurrentDamage : 1;
+
             foreach (var hit in hits)
             {
                 // Пропускаем самого героя
@@ -66,8 +71,8 @@ namespace PixelCrew.Components
                 var health = hit.GetComponent<HealthComponent>();
                 if (health != null)
                 {
-                    health.ApplyDamage(1);
-                    Debug.Log($"Герой ударил {hit.name}!");
+                    health.ApplyDamage(damage); // Используем переменную damage
+                    Debug.Log($"Герой ударил {hit.name} на {damage} урона!");
                 }
             }
         }
