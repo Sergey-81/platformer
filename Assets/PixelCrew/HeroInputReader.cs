@@ -63,4 +63,16 @@ public class HeroInputReader : MonoBehaviour
             _hero.UsePotion();
         }
     }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            var dash = _hero.GetComponent<HeroDash>();
+            if (dash != null)
+            {
+                dash.Dash();
+            }
+        }
+    }
 }
