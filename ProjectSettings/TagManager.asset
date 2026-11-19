@@ -56,3 +56,6 @@ TagManager:
   - name: 5Layer
     uniqueID: 931110323
     locked: 0
+  - name: Light
+    uniqueID: 3273351733
+    locked: 0
